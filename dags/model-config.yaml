@@ -1,0 +1,29 @@
+# Configuration for audio_classifier AudioCNN MNIST model architecture
+model_name: AudioCNNModel
+layers:
+  # MelSpecLayer
+  - sampling_rate: 8000
+    num_mel_bands: 256
+  # AudioCNNPreprocessingLayer
+  - image_height: 256
+    image_width: 256
+  # AudioCNNFrontEndLayer 1
+  - n_filters: 32
+    kernal_size: 3
+    strides: 2
+    activation: relu
+  # AudioCNNFrontEndLayer 2
+  - n_filters: 64
+    kernal_size: 3
+    activation: relu
+  # AudioCNNFrontEndLayer 3
+  - n_filters: 128
+    kernal_size: 3
+    activation: relu
+  # AudioCNNEmbeddingLayer
+  - num_dense_layer: 256
+    activation: relu
+  # AudioCNNActivationLayer
+  - num_dense_layer: 10
+    dropout_rate: 0.3
+    activation: softmax

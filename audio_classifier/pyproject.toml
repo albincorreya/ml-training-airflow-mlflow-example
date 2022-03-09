@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "audio-classifier"
+version = "0.1" # major.minor managed by the developer(s), patch managed by the CI/CD Pipeline
+description = "Deep learning based audio-classifier python package"
+authors = ["Albin Correya"]
+
+packages = [
+    { include = "audio_classifier", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "3.7.12"
+python-json-logger = "^2.0.1"
+python-multipart = "^0.0.5"
+typing-extensions = "^3.10.0"
+tensorflow = "2.7.0"
+matplotlib = "^3.5.1"
+scikit-learn = "1.0.2"
+essentia = "^2.1b6.dev184"
+pydantic = "^1.9.0"
+tqdm = "^4.63.0"
+tensorflow-io = "^0.24.0"
+pandas = "1.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+recommonmark = "^0.7.1"
+mypy = "^0.790"
+flake8 = "^3.8.4"
+pytest-cov = "^2.10.1"
+tox = "^3.20.1"
+autopep8 = "^1.5.4"
+pep8-naming = "^0.11.1"
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

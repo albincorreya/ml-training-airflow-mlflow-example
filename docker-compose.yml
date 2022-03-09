@@ -1,0 +1,108 @@
+# Example docker-compose configuration for deploying a local MLOps stack to a single server
+# ML infrastructure resources like airflow and mlflow server can be reused for any amount of ml experiments
+# This example also consists using a ml playground docker container with some custom deep learning python package 
+# along with the whole MLOps stack. ie. You can do ETL loads, data validation, ML training, versioning, tracking etc.
+
+version: '3'
+services:
+
+  # test airflow service with SQLite backend to make it MVP (not for production)
+  airflow:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.airflow
+    container_name: airflow
+    ports:
+      - 8080:8080
+    depends_on:
+      - mlflow
+    volumes:
+      - airflowdata:/tmp/airflow/artifacts/
+      - ./mlflows:/mlflow/artifacts
+      - ./dags:/opt/airflow/dags
+    networks:
+      - frontend
+      - backend
+    env_file:
+      - ./env_files/compose.env
+      - ./env_files/secrets.env
+    command: standalone
+
+  # mlfow server with postgresql db backend
+  mlflow:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.mlflow
+    container_name: mlflow
+    ports:
+      - 5000:5000
+    volumes:
+      - ./mlflows:/mlflow/artifacts
+      - ./:/workspace/
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+    env_file:
+      - ./env_files/compose.env
+      - ./env_files/secrets.env
+    command: /tmp/start_mlflow.sh
+
+  # db backend for mlflow
+  postgresql:
+    image: postgres:10.5
+    container_name: postgresql
+    expose:
+      - "5432"
+    env_file:
+      - ./env_files/compose.env
+      - ./env_files/secrets.env
+    hostname: postgresql
+    shm_size: 256mb
+    volumes:
+      - ./dbs:/var/lib/postgresql/data
+    networks:
+      - backend
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # running ml experiments with single GPU device support
+  # you need to have nvidia-docker installed on host system
+  playground-gpu:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.playground
+    container_name: playground
+    depends_on:
+      - mlflow
+    volumes:
+      - ./scripts:/workspace/
+    networks:
+      - frontend
+      - backend
+    env_file:
+      - ./env_files/compose.env
+    entrypoint: []
+    shm_size: 6gb
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [ gpu ]
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+    airflowdata:

@@ -1,0 +1,12 @@
+**__pycache__*
+**.idea
+**~
+**.vscode
+**.DS_Store*
+.pytest_cache
+.mypy_cache
+.poetry
+.env
+venv
+dbs
+mlflows

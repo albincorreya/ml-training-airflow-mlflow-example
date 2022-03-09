@@ -1,0 +1,14 @@
+{
+  "enable_preprocess": true,
+  "preprocess": {
+    "dataset_version": 1,
+    "audio_dir": "/opt/airflow/local-assets/raw_input_data/recordings",
+    "output_dir": "/opt/airflow/local-assets/tfrecord_datasets"
+  },
+  "train": {
+    "dataset_path": "/opt/airflow/local-assets/tfrecord_datasets/MNIST-audio/1",
+    "n_epochs": 2,
+    "data_batch_size": 32,
+    "model_yaml_config": "/opt/airflow/dags/model-config.yaml"
+  }
+}
