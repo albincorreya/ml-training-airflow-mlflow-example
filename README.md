@@ -2,7 +2,15 @@
 
 This is an example of setting up MLOPs training pipeline infrastructure with production ready ML research code on a local server.
 
-Note, that this is a solution strictly considering local (on-premise) setup using open-source technolgies. There are better alternative like AWS SageMaker if you want totally on-clouud solutions.
+
+Why both Airflow and MLflow?
+
+- Airflow is a standard scalable worlfow manager in the industry with good community support. It has a easy-to-use web UI which can imporove the workflow productivity of data scientists without moving away from python ecosystem. It also gives flexibity to run many combinations of DAGs with different operators (eg, docker, python, bash, remote etc). 
+
+- MLFlow is a easy-to-use open-source ML experiment and model artifact tracker. built-in autolog support for our Tensorlfow/Keras models.
+
+
+Note, that this is a solution strictly considering the restrictions of local (on-premise) server setup using open-source technolgies. There are better alternative like AWS SageMaker etc if you want end-2-end on-cloud solutions.
 
 
 The project is structured as below
@@ -10,7 +18,7 @@ The project is structured as below
   Check [here](./audio_classifier/README.md) for more details.
 - [dags](./dags): Custom Airflow DAGs and example json configurations to run ML pipeline
 - [docker](./docker): Custom Dockerfiles for various containers used in our docker-compose stack.
-- [env_files](./env_files): Files with environment variables defined for the docker-compose stack.
+- [env_files](./env_files): Files with environment variables defined for the docker-compose stack. (Note: dont use these secrets in production)
 - [scripts](./scripts): A bunch of bash and python scripts along with some template configuration files.
 - [data](./data): Input raw audio dataset provided from the reference repository
 
