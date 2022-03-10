@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Start containers
-      run: docker-compose up --build airflow 
+      run: docker-compose up --build -d airflow 
 
     - name: Stop containers
       if: always()
