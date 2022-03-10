@@ -1,5 +1,7 @@
 # Demo MLOps framework with custom Audio Classifier python package
 
+![example workflow](https://github.com/albincorreya/mlops-training-pipeline-demo/actions/workflows/push.yml/badge.svg)
+
 This is an example of setting up MLOPs training pipeline infrastructure with production ready ML research code on a local server.
 
 

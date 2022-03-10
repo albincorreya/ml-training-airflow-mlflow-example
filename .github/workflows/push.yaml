@@ -20,8 +20,8 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Start containers
-      run: docker-compose build airflow
+      run: docker-compose up --build airflow 
 
     - name: Stop containers
       if: always()
-      run: docker-compose -f "docker-compose.yml" down --remove-orphans
+      run: docker-compose down --remove-orphans
