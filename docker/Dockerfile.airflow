@@ -12,6 +12,8 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 
 USER airflow
 
+RUN chmod +x /usr/local/bin/poetry
+
 ENV AUDIO_CLASSIFIER_PKG=/tmp/custom-python-pkg/
 
 # Copy the python package to the container
