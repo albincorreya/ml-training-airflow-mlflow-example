@@ -19,8 +19,6 @@ COPY ./audio_classifier/ ${AUDIO_CLASSIFIER_PKG}
 RUN cd ${AUDIO_CLASSIFIER_PKG} && poetry install --no-root --no-interaction \
  && rm -rf ~/.cache/pypoetry/{cache,artifacts}
 
-USER airflow
-
 # Since we dont have a internal PyPi repo installing locally
 RUN cd ${AUDIO_CLASSIFIER_PKG} && poetry build \
   && python -m pip install $(find ./dist -name '*.tar.gz') \
@@ -28,6 +26,8 @@ RUN cd ${AUDIO_CLASSIFIER_PKG} && poetry build \
 
 # Cleanup package source code
 RUN rm -r ${AUDIO_CLASSIFIER_PKG}*
+
+USER airflow
 
 ENV MY_LOCAL_ASSETS=/opt/airflow/local-assets/
 
