@@ -9,6 +9,9 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
     ln -s /opt/poetry/bin/poetry && \
     poetry config virtualenvs.create false
 
+
+USER airflow
+
 ENV AUDIO_CLASSIFIER_PKG=/tmp/custom-python-pkg/
 
 # Copy the python package to the container
@@ -26,8 +29,6 @@ RUN cd ${AUDIO_CLASSIFIER_PKG} && poetry build \
 
 # Cleanup package source code
 RUN rm -r ${AUDIO_CLASSIFIER_PKG}*
-
-USER airflow
 
 ENV MY_LOCAL_ASSETS=/opt/airflow/local-assets/
 
