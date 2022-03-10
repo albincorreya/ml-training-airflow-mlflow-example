@@ -9,11 +9,6 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
     ln -s /opt/poetry/bin/poetry && \
     poetry config virtualenvs.create false
 
-
-USER airflow
-
-RUN chmod +x /usr/local/bin/poetry
-
 ENV AUDIO_CLASSIFIER_PKG=/tmp/custom-python-pkg/
 
 # Copy the python package to the container
@@ -23,6 +18,8 @@ COPY ./audio_classifier/ ${AUDIO_CLASSIFIER_PKG}
 # In future we could isolate this dependencies using docker operators in airflow
 RUN cd ${AUDIO_CLASSIFIER_PKG} && poetry install --no-root --no-interaction \
  && rm -rf ~/.cache/pypoetry/{cache,artifacts}
+
+USER airflow
 
 # Since we dont have a internal PyPi repo installing locally
 RUN cd ${AUDIO_CLASSIFIER_PKG} && poetry build \
