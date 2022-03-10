@@ -1,5 +1,10 @@
 # Demo MLOps framework with custom Audio Classifier python package
 
+This is an example of setting up MLOPs training pipeline infrastructure with production ready ML research code on a local server.
+
+Note, that this is a solution strictly considering local (on-premise) setup using open-source technolgies. There are better alternative like AWS SageMaker if you want totally on-clouud solutions.
+
+
 The project is structured as below
 - [audio_classifier](./audio_classifier): Custom python library for training deep learning audio classifiers. 
   Check [here](./audio_classifier/README.md) for more details.
@@ -27,16 +32,11 @@ Tools used:
 
 ## Getting started 
 
+- One command to spin up everything
 
-- Setup SSH port forwarding on your local system
-
-```bash
-ssh -L 5000:35.217.35.118:5000 ubuntu@35.217.35.118
-
-ssh -L 8080:35.217.35.118:8080 ubuntu@35.217.35.118
 ```
-
-> Important: you can find the password on your email
+docker-compose up airflow --build
+```
 
 ### Access dashboard
 
@@ -47,7 +47,22 @@ ssh -L 8080:35.217.35.118:8080 ubuntu@35.217.35.118
 >> Note: the login credentials for airflow are sent by email. PLease reachout if you haven't received it.
 
 
-### Run DAG using Airflow
+#### Optional 
+
+- Setup SSH port forwarding on your local system if we want to access the service runnign on a remote server.
+  
+  
+```bash
+ssh -L 5000:35.217.35.118:5000 ubuntu@35.217.35.118
+
+ssh -L 8080:35.217.35.118:8080 ubuntu@35.217.35.118
+```
+
+> Important: The remote server provided has some memory limitations so the service is not up.
+
+
+
+## Run DAG using Airflow
 
 #### Using Airflow Web UI
 
@@ -67,6 +82,15 @@ We can also see a visualisation of ML training pipeline DAG
   [ml_pipeline_config.json](./dags/ml_pipeline_config.json) example on the web UI.
   
 ![alt text](./assets/trigger-job-example.png)
+
+
+## Experiment and model artifact tracking with MLFlow
+
+![alt text](./assets/tracking-lists.png)
+
+![alt text](./assets/artifacts.png)
+
+![alt text](./assets/metrics.png)
 
 ## Local development Setup
 
@@ -109,6 +133,7 @@ python scripts/ml/train.py --help
 
 ## Things nice-to-have in future iterations
 
+- Full fledge CI/CD pipeline on the repository (Eg: Github actions)
 - More elaborate doc strings in python code of `audio_classifier`.
 - Deploying Airflow more production ready mode (Now we are using SQLite backend for simplicity).
 - Adding reverse-proxy for both remote MLFlow and Airflow tracking servers so that it can be accessed from internet,
