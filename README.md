@@ -1,6 +1,6 @@
 # Demo MLOps framework with custom Audio Classifier python package
 
-![example workflow](https://github.com/albincorreya/mlops-training-pipeline-demo/actions/workflows/push.yml/badge.svg)
+![example workflow](https://github.com/albincorreya/mlops-training-pipeline-demo/actions/workflows/push.yaml/badge.svg)
 
 This is an example of setting up MLOPs training pipeline infrastructure with production ready ML research code on a local server.
 
@@ -45,8 +45,10 @@ Tools used:
 - One command to spin up everything
 
 ```
-docker-compose up airflow --build
+docker-compose up --build airflow
 ```
+
+> Your admin password passowrd of airflow UI can be accesed from the logs for first-time login
 
 ### Access dashboard
 
@@ -107,7 +109,7 @@ We can also see a visualisation of ML training pipeline DAG
 - Launch our MLOps infrastructure with the following command 
 
 ```bash
-docker-compose up mlflow --build
+docker-compose up --build mlflow
 ```
 
 Once it is up you can access the web interfaces of both Airflow and MLFlow at the following addresses 
