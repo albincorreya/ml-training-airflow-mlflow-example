@@ -1,4 +1,4 @@
-FROM python:3.7-buster
+FROM python:3.7.12-buster
 
 # Install Poetry for better python dependency management and packaging
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | POETRY_HOME=/opt/poetry \
