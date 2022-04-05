@@ -1,5 +1,10 @@
 # Deep Learning Audio Classifiers
-Python library with architectures of deep learning tensorflow keras audio classifier models
+
+This library is intented to showcase as an example of productionising deep learning ML code to a reusable and modular python library. To start with, we adapt the [Classifiy MNIST Audio Keras example](https://www.kaggle.com/code/christianlillelund/classify-mnist-audio-using-spectrograms-keras-cnn/notebook) from Kaggle.
+
+
+> Note: By no means this models are closer to state-of-the-art deep learning models for audio classification in literature.
+
 
 - Modular and configurable design allows to derive new model architecture easily without refactoring 
   code to a certain extent.

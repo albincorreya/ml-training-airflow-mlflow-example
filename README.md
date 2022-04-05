@@ -1,8 +1,10 @@
-# Demo MLOps framework with custom Audio Classifier python package
+# An example MLOps training framework with custom audio Classifier python package
 
 ![example workflow](https://github.com/albincorreya/mlops-training-pipeline-demo/actions/workflows/push.yaml/badge.svg)
 
-This is an example of setting up MLOPs training pipeline infrastructure with production ready ML research code on a local server.
+This is an example of setting up MLOPs training pipeline infrastructure with some dummy production ready ML research code on a local server.
+
+> Note: This purely meant as an educational content for data scientists to get familiar with open-source tools like Airflow, MLFlow along with an example of packaing a custom python deep learning library.
 
 
 Why both Airflow and MLflow?
@@ -12,7 +14,7 @@ Why both Airflow and MLflow?
 - MLFlow is a easy-to-use open-source ML experiment and model artifact tracker. built-in autolog support for our Tensorlfow/Keras models.
 
 
-Note, that this is a solution strictly considering the restrictions of local (on-premise) server setup using open-source technolgies. There are better alternative like AWS SageMaker etc if you want end-2-end on-cloud solutions.
+> Note, this solution strictly considers the restrictions of local (on-premise) server setup using open-source technolgies. There are more alternatives if you are looking for cloud platform solutions.
 
 
 The project is structured as below
@@ -145,9 +147,9 @@ python scripts/ml/train.py --help
 
 ## Things nice-to-have in future iterations
 
-- Full fledge CI/CD pipeline on the repository (Eg: Github actions)
+- Full fledge CI/CD pipeline on the repository
 - More elaborate doc strings in python code of `audio_classifier`.
 - Deploying Airflow more production ready mode (Now we are using SQLite backend for simplicity).
-- Adding reverse-proxy for both remote MLFlow and Airflow tracking servers so that it can be accessed from internet,
+- Adding reverse-proxy (nginx etc) for both remote MLFlow and Airflow tracking servers.
 
 
