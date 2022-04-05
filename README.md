@@ -1,4 +1,4 @@
-# An example MLOps training framework with custom audio Classifier python package
+# An example of local MLOps training framework with custom audio ML python package
 
 ![example workflow](https://github.com/albincorreya/mlops-training-pipeline-demo/actions/workflows/push.yaml/badge.svg)
 
@@ -24,7 +24,7 @@ The project is structured as below
 - [docker](./docker): Custom Dockerfiles for various containers used in our docker-compose stack.
 - [env_files](./env_files): Files with environment variables defined for the docker-compose stack. (Note: dont use these secrets in production)
 - [scripts](./scripts): A bunch of bash and python scripts along with some template configuration files.
-- [data](./data): Input raw audio dataset provided from the reference repository
+- [data](./data): Input raw audio dataset provided from the reference repository (Idealy, this should not reside in this repo)
 
 
 ## docker-compose stack
