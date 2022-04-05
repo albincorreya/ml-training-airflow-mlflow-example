@@ -14,7 +14,7 @@ Why both Airflow and MLflow?
 - MLFlow is a easy-to-use open-source ML experiment and model artifact tracker. built-in autolog support for our Tensorlfow/Keras models.
 
 
-> Note, this solution strictly considers the restrictions of local (on-premise) server setup using open-source technolgies. There are more alternatives if you are looking for cloud platform solutions.
+> Note, this solution strictly considers the restrictions of local (on-premise) server setup using open-source technolgies. There are more alternatives if you are looking for cloud platform solutions. Also, the infrastructure setup here is not production-ready and soley meant for educational purpose.
 
 
 The project is structured as below
@@ -41,6 +41,7 @@ Tools used:
 
 ![alt text](./assets/sketch.png)
 
+> Note: You can also expand with stack with more custom containers with cpu or gpu support by extenting the tempalte docker-compose.yml file.
 
 ## Getting started 
 
@@ -59,21 +60,6 @@ docker-compose up --build airflow
 - Airflow UI: http://localhost:8080
 
 >> Note: the login credentials for airflow are sent by email. PLease reachout if you haven't received it.
-
-
-#### Optional 
-
-- Setup SSH port forwarding on your local system if we want to access the service runnign on a remote server.
-  
-  
-```bash
-ssh -L 5000:35.217.35.118:5000 ubuntu@35.217.35.118
-
-ssh -L 8080:35.217.35.118:8080 ubuntu@35.217.35.118
-```
-
-> Important: The remote server provided has some memory limitations so the service is not up.
-
 
 
 ## Run DAG using Airflow
@@ -141,8 +127,6 @@ docker-compose run mlflow bash
 # once inside the shell
 python scripts/ml/train.py --help
 ```
-
-#### Using Airflow CLI with MLFlow tracking
 
 
 ## Things nice-to-have in future iterations
