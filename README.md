@@ -24,7 +24,6 @@ The project is structured as below
 - [docker](./docker): Custom Dockerfiles for various containers used in our docker-compose stack.
 - [env_files](./env_files): Files with environment variables defined for the docker-compose stack. (Note: dont use these secrets in production)
 - [scripts](./scripts): A bunch of bash and python scripts along with some template configuration files.
-- [data](./data): Input raw audio dataset provided from the reference repository (Idealy, this should not reside in this repo)
 
 
 ## docker-compose stack
@@ -45,6 +44,7 @@ Tools used:
 
 ## Getting started 
 
+
 - One command to spin up everything
 
 ```
@@ -60,6 +60,10 @@ docker-compose up --build airflow
 - Airflow UI: http://localhost:8080
 
 >> Note: the login credentials for airflow are sent by email. PLease reachout if you haven't received it.
+
+## Dataset
+
+Make sure you download the dataset as per the instructions described [here](./data/README.md).
 
 
 ## Run DAG using Airflow
