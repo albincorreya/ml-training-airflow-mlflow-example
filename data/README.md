@@ -1,7 +1,7 @@
 
 ## Data Source
 
-We use the [free-spoken-digit dataset](https://zenodo.org/record/1342401) four our dummy audio ML training job.
+We use the [free-spoken-digit dataset](https://zenodo.org/record/1342401) for our dummy audio ML training job.
 
 
 Eg: you use the following bash script at this directory level to download the raw audio files of dataset from Zenodo.
