@@ -1,18 +1,12 @@
-# An example of local MLOps training framework with custom audio ML python package
+# ml-training-airflow-mlflow-example
+
+Audio ML training job on Airflow with MlFlow experiment tracking.
 
 ![example workflow](https://github.com/albincorreya/mlops-training-pipeline-demo/actions/workflows/push.yaml/badge.svg)
 
-This is an example of setting up MLOPs training pipeline infrastructure with some dummy production ready ML research code on a local server.
+This is an example of setting up local MLOPs training pipeline infrastructure with some dummy production ready ML research code on a local server.
 
 > Note: This purely meant as an educational content for data scientists to get familiar with open-source tools like Airflow, MLFlow along with an example of packaing a custom python deep learning library.
-
-
-Why both Airflow and MLflow?
-
-- Airflow is a standard scalable worlfow manager in the industry with good community support. It has a easy-to-use web UI which can imporove the workflow productivity of data scientists without moving away from python ecosystem. It also gives flexibity to run many combinations of DAGs with different operators (eg, docker, python, bash, remote etc). 
-
-- MLFlow is a easy-to-use open-source ML experiment and model artifact tracker. built-in autolog support for our Tensorlfow/Keras models.
-
 
 > Note, this solution strictly considers the restrictions of local (on-premise) server setup using open-source technolgies. There are more alternatives if you are looking for cloud platform solutions. Also, the infrastructure setup here is not production-ready and soley meant for educational purpose.
 
@@ -109,9 +103,9 @@ Once it is up you can access the web interfaces of both Airflow and MLFlow at th
 http://localhost:8080 and http://localhost:5000
 
 
-> NOTE: For simplicity a reverse proxy wasn't added to the stack. But, a nginx server or similar could be easily 
-> setup up on the current stack in future
-> 
+> NOTE: For simplicity a reverse proxy wasn't added to the stack. But, a nginx server or similar could be added before deploying into a server
+
+
 ### Run your scripts from command line
 
 Once the Airflow server is up run the following command
@@ -138,6 +132,6 @@ python scripts/ml/train.py --help
 - Full fledge CI/CD pipeline on the repository
 - More elaborate doc strings in python code of `audio_classifier`.
 - Deploying Airflow more production ready mode (Now we are using SQLite backend for simplicity).
-- Adding reverse-proxy (nginx etc) for both remote MLFlow and Airflow tracking servers.
+- Adding reverse-proxy (eg. nginx) for both remote MLFlow and Airflow tracking servers.
 
 
